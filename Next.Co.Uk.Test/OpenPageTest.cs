@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -99,6 +101,29 @@ namespace Next.Co.Uk.Test
 
             Assert.AreEqual(expectTitle, actualTitle);
 
+
+            ArrayList Titleslist = new ArrayList();
+            //frst one
+            
+           // object olink = (driver.FindElement(By.CssSelector("#i1>section:nth-child(1)>div:nth-child(1)>h2:nth-child(1)>a*")).GetAttribute("href"));
+
+            //Titleslist.Add(driver.FindElement(By.XPath("//*[@id='i1']/section/div[1]/h2/a/@href")));
+            Titleslist.Add(driver.FindElement(By.XPath("//*[@id='i1']/section/div[1]/div[1]/a")).Text);
+
+            //second one
+           // Titleslist.Add(driver.FindElement(By.XPath("//*[@id='i2']/section/div[1]/h2/a/@href")).Text);
+            Titleslist.Add(driver.FindElement(By.XPath("//*[@id='i2']/section/div[1]/div[1]/a")).Text);
+
+            //third one
+           // Titleslist.Add(driver.FindElement(By.XPath("//*[@id='i3']/section/div[1]/h2/a/@href")).Text);
+            Titleslist.Add(driver.FindElement(By.XPath("//*[@id='i3']/section/div[1]/div[1]/a")).Text);
+
+          //  System.Console.Write(olink);
+            foreach (object o in Titleslist)
+            {
+                System.Console.Write(o);
+            }
+           /// jeans1516y.Add()
 
 
         }
