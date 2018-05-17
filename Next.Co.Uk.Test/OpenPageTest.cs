@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 
 namespace Next.Co.Uk.Test
@@ -76,6 +77,9 @@ namespace Next.Co.Uk.Test
             //Find Boys jeans page
             By Serchbox = By.Id("sli_search_1");
             By JeansIMG = By.XPath("//*[@id='fade']");
+            By SizeSerchbox = By.XPath("//*[@id='FilterModalOuter']/div/div[1]/input");
+            By FilterModalOuter = By.XPath("//*[@id='FilterModalOuter']']");
+            By ConfirmSizeButton = By.XPath("//*[@id='FilterModalOuter']/div/div[5]/a");
             driver.FindElement((Serchbox)).SendKeys("BOYS JEANS");
             driver.FindElement((Serchbox)).Submit();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
@@ -92,19 +96,42 @@ namespace Next.Co.Uk.Test
             //Scroll down
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("window.scrollBy(0,500)", "");
-            
+
+
             //chose 15-16y size
+            // checked popup menu is displayed or no
+            if (driver.FindElement(SizeSerchbox).Displayed)
+            {
+
+                driver.FindElement((SizeSerchbox)).Clear();
+                driver.FindElement((SizeSerchbox)).SendKeys("15 - 16 Years");
+                driver.FindElement((SizeSerchbox)).SendKeys(Keys.Enter);
+                driver.FindElement((ConfirmSizeButton)).Click();  
+            }
+
+            else {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             By Size1516Y = By.XPath("//*[@id='size']/div[2]/ul/li[21]/div/label");
             driver.FindElement(Size1516Y).Click();
+            }
+
+            // select the drop down list
+            // var price = driver.FindElement(By.ClassName("dk_container  dk_theme_default Select SortBy"));
+            //create select element object 
+            // var selectElement = new SelectElement(price);
+
+            //select by value
+            // selectElement.SelectByValue("price");
+
+
 
             //check title
-            String actualTitle = driver.Title;
+            // String actualTitle = driver.Title;
 
-          //  Assert.AreEqual(expectTitle, actualTitle);
+            //  Assert.AreEqual(expectTitle, actualTitle);
 
 
-           ArrayList Titleslist = new ArrayList();
+            ArrayList Titleslist = new ArrayList();
            ArrayList Linklist = new ArrayList();
             //frst one
 
