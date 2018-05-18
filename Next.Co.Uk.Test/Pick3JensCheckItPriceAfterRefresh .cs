@@ -12,9 +12,12 @@ namespace Next.Co.Uk.Test
     [TestClass]
     public class UnitTest1
     {
-        ArrayList Linklist = new ArrayList();
-        ArrayList Pricelist = new ArrayList();
+         ArrayList Linklist = new ArrayList();
+         ArrayList Pricelist = new ArrayList();
+         ArrayList RefreshPricelist = new ArrayList();
+
         public IWebDriver Driver { get; set; }
+        public IWebDriver SecondDriver { get; set; }
         public WebDriverWait Wait { get; set; }
 
         [TestInitialize]
@@ -27,7 +30,7 @@ namespace Next.Co.Uk.Test
         [TestCleanup]
         public void TeardownTest()
         {
-            this.Driver.Quit();
+         this.Driver.Quit();
         }
 
         [TestMethod]
@@ -47,33 +50,39 @@ namespace Next.Co.Uk.Test
 
             //Show all sizes
             searchJeansPage.SizeVievMoreLinkMenu();
-            
+
             searchJeansPage.SizeVievMenu();
 
             searchJeansPage.PriceSortMenu();
             searchJeansPage.GetLink(Linklist);
             searchJeansPage.GetPrice(Pricelist);
 
-
+            this.Driver.Close();
             foreach (object o in Linklist)
             {
-                Console.Write(o);
-                Console.WriteLine();
+                 this.Driver = new ChromeDriver();
+                ProductPage JeansPage = new ProductPage(this.Driver);
+                JeansPage.Navigate((string)o);
+                JeansPage.PopupCheck();
+                JeansPage.GetRefreshLink(RefreshPricelist);
+                this.Driver.Close();
             }
 
-            foreach (object o in Pricelist)
-            {
-                Console.Write(o);
-                Console.WriteLine();
-            }
-
+            //assert
+            CollectionAssert.AreEqual(RefreshPricelist, Pricelist);
+           
         }
 
-        [TestMethod]
-        public void JeansPage()
-        {
-            
-        }
+
+
+
 
     }
-}
+
+        
+    }
+
+
+
+      
+    
