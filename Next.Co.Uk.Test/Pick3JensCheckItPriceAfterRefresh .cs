@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Next.Co.Uk.Test.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using log4net;
 
 namespace Next.Co.Uk.Test
 {
@@ -15,7 +15,7 @@ namespace Next.Co.Uk.Test
          ArrayList Linklist = new ArrayList();
          ArrayList Pricelist = new ArrayList();
          ArrayList RefreshPricelist = new ArrayList();
-
+        static ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public IWebDriver Driver { get; set; }
         public IWebDriver SecondDriver { get; set; }
         public WebDriverWait Wait { get; set; }
@@ -35,7 +35,10 @@ namespace Next.Co.Uk.Test
 
         [TestMethod]
         public void SearchJeans()
+            
         {
+            
+            log.Info("Test was running");
             MainPage searchJeansPage = new MainPage(this.Driver);
             searchJeansPage.Navigate();
             searchJeansPage.Search("BOYS JEANS");
@@ -44,36 +47,46 @@ namespace Next.Co.Uk.Test
             //Show sizes list
             searchJeansPage.ChangeSizeButton();
 
-            //Scroll down
+            //Scroll down page
             IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
             js.ExecuteScript("window.scrollBy(0,500)", "");
 
             //Show all sizes
             searchJeansPage.SizeVievMoreLinkMenu();
 
+            //Pick necessary size	
+           
             searchJeansPage.SizeVievMenu();
 
+            //Pick three cheaper product
             searchJeansPage.PriceSortMenu();
+
+            //Copy price and url
             searchJeansPage.GetLink(Linklist);
             searchJeansPage.GetPrice(Pricelist);
 
+            //Restart brouser 
             this.Driver.Close();
+            
+
             foreach (object o in Linklist)
             {
-                 this.Driver = new ChromeDriver();
+                log.Info("Browser was opened");
+                this.Driver = new ChromeDriver();
                 ProductPage JeansPage = new ProductPage(this.Driver);
                 JeansPage.Navigate((string)o);
                 JeansPage.PopupCheck();
+                //Copy new prices
                 JeansPage.GetRefreshLink(RefreshPricelist);
                 this.Driver.Close();
             }
 
-            //assert
+            //assert old and new prices
             CollectionAssert.AreEqual(RefreshPricelist, Pricelist);
            
         }
 
-
+        
 
 
 
