@@ -42,6 +42,12 @@ namespace Next.Co.Uk.Test.PageObjects
         {
             this.driver.Navigate().GoToUrl(this.url);
         }
+
+        public void Navigate(string url)
+        {
+            this.driver.Navigate().GoToUrl(url);
+        }
+
         public void Search(string textToType)
         {
             this.SearchBox.Clear();
@@ -132,8 +138,12 @@ namespace Next.Co.Uk.Test.PageObjects
 
         [FindsBy(How = How.XPath, Using = "//*[@id='i2']/section/div[2]/a[position() = 1 and @href]")]
         public IWebElement secondLink { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//*[@id='i3']/section/div[2]/a[position() = 1 and @href]")]
         public IWebElement thirdLink { get; set; }
+
+      
+        
 
         public ArrayList GetPrice(ArrayList lst)
         {
@@ -156,5 +166,8 @@ namespace Next.Co.Uk.Test.PageObjects
 
         }
 
+
+
+         
     }
- }
+}

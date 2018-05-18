@@ -62,10 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageObjects\MainPage.cs" />
-    <Compile Include="OpenPageTest.cs" />
-    <None Include="PageObjects\ProductPage.cs1" />
+    <Compile Include="PageObjects\ProductPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Pick3JensCheckItPriceAfterRefresh .cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
