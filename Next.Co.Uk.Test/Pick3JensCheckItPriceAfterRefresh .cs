@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using log4net;
+using System.Configuration;
 
 namespace Next.Co.Uk.Test
 {
@@ -16,6 +17,9 @@ namespace Next.Co.Uk.Test
          ArrayList Pricelist = new ArrayList();
          ArrayList RefreshPricelist = new ArrayList();
         static ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        string username = ConfigurationManager.AppSettings.Get("Username");
+        string password = ConfigurationManager.AppSettings.Get("Passwoord");
         public IWebDriver Driver { get; set; }
         public IWebDriver SecondDriver { get; set; }
         public WebDriverWait Wait { get; set; }
@@ -37,7 +41,7 @@ namespace Next.Co.Uk.Test
         public void SearchJeans()
             
         {
-            
+         
             log.Info("Test was running");
             MainPage searchJeansPage = new MainPage(this.Driver);
             searchJeansPage.Navigate();
@@ -86,11 +90,21 @@ namespace Next.Co.Uk.Test
            
         }
 
-        
 
 
+        [TestMethod]
+        public void LogIn()
 
-    }
+        {
+            
+            log.Info("Test was running");
+            SignInPage LogInPage = new SignInPage(this.Driver);
+            LogInPage.Navigate("https://www.next.co.uk/secure/account/Login");
+            LogInPage.LogIn(username, password);
+        }
+
+
+        }
 
         
     }

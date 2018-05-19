@@ -1,13 +1,13 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Collections;
-
+using System.Configuration;
 
 namespace Next.Co.Uk.Test.PageObjects
 {
     public class MainPage
     {
-
+        
         private readonly IWebDriver driver;
         private readonly string url = @"http://www.next.co.uk/";
 
