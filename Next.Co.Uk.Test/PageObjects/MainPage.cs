@@ -12,6 +12,48 @@ namespace Next.Co.Uk.Test.PageObjects
         private readonly string url = @"http://www.next.co.uk/";
 
 
+
+        [FindsBy(How = How.Id, Using = "sli_search_1")]
+        public IWebElement SearchBox { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='size']/div[1]/p")]
+        public IWebElement SizeFilter { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='size']/a")]
+        public IWebElement SizeVievMoreLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='size']/div[2]/ul/li[21]/div/label")]
+        public IWebElement Size1516Y { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='FilterModalOuter']/div/div[1]/input")]
+        public IWebElement SizeSerchbox { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='FilterModalOuter']/div/div[5]/a")]
+        public IWebElement ConfirmSizeButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='dk_container_iSort']")]
+        public IWebElement priceSortByButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='dk_container_iSort']/div/ul/li[4]")]
+        public IWebElement priceLoverSelector { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='i1']/section/div[1]/div[1]/a")]
+        public IWebElement firstPrise { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='i2']/section/div[1]/div[1]/a")]
+        public IWebElement secondPrise { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[@id='i3']/section/div[1]/div[1]/a")]
+        public IWebElement thirdPrise { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='i1']/section/div[2]/a[position() = 1 and @href]")]
+        public IWebElement firstLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='i2']/section/div[2]/a[position() = 1 and @href]")]
+        public IWebElement secondLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='i3']/section/div[2]/a[position() = 1 and @href]")]
+        public IWebElement thirdLink { get; set; }
+
         public MainPage(IWebDriver browser)
         {
             this.driver = browser;
@@ -107,46 +149,6 @@ namespace Next.Co.Uk.Test.PageObjects
 
         }
 
-        [FindsBy(How = How.Id, Using = "sli_search_1")]
-        public IWebElement SearchBox { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='size']/div[1]/p")]
-        public IWebElement SizeFilter { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='size']/a")]
-        public IWebElement SizeVievMoreLink { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='size']/div[2]/ul/li[21]/div/label")]
-        public IWebElement Size1516Y { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='FilterModalOuter']/div/div[1]/input")]
-        public IWebElement SizeSerchbox { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='FilterModalOuter']/div/div[5]/a")]
-        public IWebElement ConfirmSizeButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='dk_container_iSort']")]
-        public IWebElement priceSortByButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='dk_container_iSort']/div/ul/li[4]")]
-        public IWebElement priceLoverSelector { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='i1']/section/div[1]/div[1]/a")]
-        public IWebElement firstPrise { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='i2']/section/div[1]/div[1]/a")]
-        public IWebElement secondPrise { get; set; }
-        [FindsBy(How = How.XPath, Using = "//*[@id='i3']/section/div[1]/div[1]/a")]
-        public IWebElement thirdPrise { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='i1']/section/div[2]/a[position() = 1 and @href]")]
-        public IWebElement firstLink { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='i2']/section/div[2]/a[position() = 1 and @href]")]
-        public IWebElement secondLink { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='i3']/section/div[2]/a[position() = 1 and @href]")]
-        public IWebElement thirdLink { get; set; }
 
 
 

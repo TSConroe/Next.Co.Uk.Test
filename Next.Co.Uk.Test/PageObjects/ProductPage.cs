@@ -8,6 +8,12 @@ namespace Next.Co.Uk.Test.PageObjects
     {
         private readonly IWebDriver driver;
 
+        [FindsBy(How = How.XPath, Using = "//section[2]/div[1]/div/span")]
+        public IWebElement refreshLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='fade']")]
+        public IWebElement JeansIMG { get; set; }
+
 
         public ProductPage(IWebDriver browser)
         {
@@ -42,11 +48,7 @@ namespace Next.Co.Uk.Test.PageObjects
 
         }
 
-        [FindsBy(How = How.XPath, Using = "//section[2]/div[1]/div/span")]
-        public IWebElement refreshLink { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='fade']")]
-        public IWebElement JeansIMG { get; set; }
+     
 
     }
 }
